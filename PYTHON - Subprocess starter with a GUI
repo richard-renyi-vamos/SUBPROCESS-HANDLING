@@ -1,0 +1,39 @@
+import subprocess
+import tkinter as tk
+
+# Function to start subprocess 1
+def start_subprocess1():
+    try:
+        subprocess.run(['python', 'script1.py'])
+    except FileNotFoundError:
+        status_label.config(text="Error: 'script1.py' not found")
+    except Exception as e:
+        status_label.config(text=f"An error occurred: {str(e)}")
+
+# Function to start subprocess 2
+def start_subprocess2():
+    try:
+        subprocess.run(['python', 'script2.py'])
+    except FileNotFoundError:
+        status_label.config(text="Error: 'script2.py' not found")
+    except Exception as e:
+        status_label.config(text=f"An error occurred: {str(e)}")
+
+# Create the main window
+root = tk.Tk()
+root.title("Subprocess Starter")
+
+# Create buttons
+button1 = tk.Button(root, text="Start Subprocess 1", command=start_subprocess1)
+button2 = tk.Button(root, text="Start Subprocess 2", command=start_subprocess2)
+
+# Create a label for displaying status
+status_label = tk.Label(root, text="Status: Waiting for action...")
+
+# Pack widgets
+button1.pack()
+button2.pack()
+status_label.pack()
+
+# Start the GUI main loop
+root.mainloop()
